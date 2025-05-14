@@ -99,18 +99,18 @@ def landing_page():
             
             with col1:
                 # Developer Image
-                st.image("https://as1.ftcdn.net/v2/jpg/06/01/17/18/1000_F_601171827_GwbDHEuhisbGFXRfIpXFhtf7wAvsbLut.jpg", width=200, caption="John Doe")
+                st.image("rayan.jpg", width=200, caption="Its me!")
                 
                 # Social Links
                 st.markdown("### Connect")
-                st.markdown("[GitHub](https://github.com/johndoe)")
-                st.markdown("[LinkedIn](https://linkedin.com/in/johndoe)")
+                st.markdown("[GitHub](https://github.com/rayansyed95)")
+                st.markdown("[LinkedIn](https://www.linkedin.com/in/rayan-syed-866596253/)")
             
             with col2:
                 # Developer Information
-                st.markdown("## John Doe")
-                st.markdown("**Program:** Master of Computer Science")
-                st.markdown("**Batch:** 2023-2025")
+                st.markdown("## Rayan Syed")
+                st.markdown("**Program:** BS Software Engineering")
+                st.markdown("**Batch:** 2022-2025")
                 
                 # About Section
                 st.markdown("### About")
@@ -120,9 +120,9 @@ def landing_page():
                 that stand out from the crowd and pass ATS screenings.
                 
                 My background includes:
-                - 3+ years of experience in AI/ML development
-                - Full-stack web development with Python & JavaScript
-                - Strong interest in UX/UI design and user experience
+                - 1+ year of experience in AI/ML development
+                - I am Full-stack web development with Python & React
+                - My Core interest is in AI, Machine Learning and Generative AI
                 
                 Feel free to connect with me on GitHub or LinkedIn for collaborations 
                 or to share your experience with this tool!
