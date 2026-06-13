@@ -59,7 +59,7 @@ Focus on providing specific, actionable feedback that will help improve the resu
 
     try:
         response = client.chat.completions.create(
-            model="gpt-4-turbo-preview",
+            model="gpt-4o",
             messages=[
                 {"role": "system", "content": "You are a helpful ATS analysis assistant. Always respond with valid JSON."},
                 {"role": "user", "content": prompt}

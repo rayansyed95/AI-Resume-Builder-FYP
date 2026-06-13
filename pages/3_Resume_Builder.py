@@ -133,7 +133,7 @@ def resume_builder_page():
                 return
 
             # Fetch user info and profile data
-            user = st.experimental_user
+            user = st.user
             if not user or not user.is_logged_in:
                 st.warning("Please login to access this page.")
                 return
@@ -199,7 +199,7 @@ Important: Focus on creating a compelling, honest, and targeted resume that will
             with st.spinner("Analyzing and generating suggestions..."):
                 try:
                     response = client.chat.completions.create(
-                        model="gpt-4-turbo-preview",
+                        model="gpt-4o",
                         messages=[
                             {"role": "system", "content": "You are a helpful resume assistant."},
                             {"role": "user", "content": prompt}
@@ -232,7 +232,7 @@ Important: Focus on creating a compelling, honest, and targeted resume that will
                 # Extract markdown resume
                 markdown_resume = extract_markdown_resume(st.session_state.llm_output)
                 # Save to DB
-                user = st.experimental_user
+                user = st.user
                 user_id = getattr(user, "sub", None)
                 user_record = db.get_user(user_id=user_id)
                 email = user_record.get("email") if user_record else ""
@@ -287,7 +287,7 @@ Important: Focus on creating a compelling, honest, and targeted resume that will
                 with st.spinner("Regenerating suggestions with your feedback..."):
                     try:
                         response = client.chat.completions.create(
-                            model="gpt-4-turbo-preview",
+                            model="gpt-4o",
                             messages=context
                         )
                         llm_suggestions = response.choices[0].message.content

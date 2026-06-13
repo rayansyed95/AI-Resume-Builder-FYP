@@ -43,7 +43,7 @@ def google_sub_to_uuid(sub: str) -> str:
 
 # Get current user info from Streamlit
 def get_user_info():
-    user = st.experimental_user
+    user = st.user
     if not user or not user.is_logged_in:
         return None
     
@@ -89,7 +89,7 @@ def parse_resume_with_llm(resume_text):
 
     try:
         response = client.chat.completions.create(
-            model="gpt-4-turbo-preview",
+            model="gpt-4o",
             messages=[
                 {"role": "system", "content": "You are a resume parser that extracts structured information from resume text. Return arrays as proper JSON arrays, not comma-separated strings."},
                 {"role": "user", "content": prompt.format(resume_text=resume_text)}
@@ -217,6 +217,47 @@ if uploaded_file is not None:
                 # Update interests
                 if 'interests' in parsed_data:
                     st.session_state.interests = parsed_data['interests']
+                
+                # Clear existing dynamic list widget keys from session state so new values are rendered
+                prefixes = [
+                    "institution_", "degree_", "field_", "edu_start_", "edu_end_", "edu_details_",
+                    "job_title_", "company_", "work_location_", "work_start_", "work_end_", "work_resp_",
+                    "proj_name_", "proj_desc_", "proj_tech_", "proj_date_", "proj_link_",
+                    "cert_name_", "cert_year_"
+                ]
+                keys_to_clear = [k for k in st.session_state.keys() if any(k.startswith(p) for p in prefixes)]
+                for k in keys_to_clear:
+                    del st.session_state[k]
+                
+                # Explicitly populate session state widget keys with new parsed values to bind to widgets
+                for i, edu in enumerate(st.session_state.education):
+                    st.session_state[f"institution_{i}"] = edu.get("institution", "")
+                    st.session_state[f"degree_{i}"] = edu.get("degree", "")
+                    st.session_state[f"field_{i}"] = edu.get("fieldOfStudy", "")
+                    st.session_state[f"edu_start_{i}"] = edu.get("startDate", "")
+                    st.session_state[f"edu_end_{i}"] = edu.get("endDate", "")
+                    st.session_state[f"edu_details_{i}"] = edu.get("details", "")
+                
+                for i, work in enumerate(st.session_state.work_experience):
+                    st.session_state[f"job_title_{i}"] = work.get("jobTitle", "")
+                    st.session_state[f"company_{i}"] = work.get("company", "")
+                    st.session_state[f"work_location_{i}"] = work.get("location", "")
+                    st.session_state[f"work_start_{i}"] = work.get("startDate", "")
+                    st.session_state[f"work_end_{i}"] = work.get("endDate", "")
+                    resp = work.get("responsibilities", [])
+                    st.session_state[f"work_resp_{i}"] = ", ".join(resp) if isinstance(resp, list) else (resp or "")
+                
+                for i, proj in enumerate(st.session_state.projects):
+                    st.session_state[f"proj_name_{i}"] = proj.get("name", "")
+                    st.session_state[f"proj_desc_{i}"] = proj.get("description", "")
+                    tech = proj.get("technologies", [])
+                    st.session_state[f"proj_tech_{i}"] = ", ".join(tech) if isinstance(tech, list) else (tech or "")
+                    st.session_state[f"proj_date_{i}"] = proj.get("date", "")
+                    st.session_state[f"proj_link_{i}"] = proj.get("link", "")
+                
+                for i, cert in enumerate(st.session_state.certifications):
+                    st.session_state[f"cert_name_{i}"] = cert.get("name", "")
+                    st.session_state[f"cert_year_{i}"] = str(cert.get("year", "")) if cert.get("year") else ""
                 
                 st.success("Resume parsed successfully! Review and edit the information below before saving.")
                 st.rerun()

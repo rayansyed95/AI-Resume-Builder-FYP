@@ -2,15 +2,15 @@ import streamlit as st
 
 def check_auth():
     """Check if the user is authenticated."""
-    return st.experimental_user.is_logged_in
+    return getattr(st.user, "is_logged_in", False)
 
 def get_user_info():
     """Get the current user's information."""
     if check_auth():
         return {
-            "name": st.experimental_user.name,
-            "email": st.experimental_user.email,
-            "picture": st.experimental_user.picture
+            "name": st.user.name,
+            "email": st.user.email,
+            "picture": st.user.picture
         }
     return None
 

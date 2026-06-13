@@ -42,7 +42,7 @@ def past_resumes_page():
     st.title("Your Resumes")
     
     # Get user ID
-    user = st.experimental_user
+    user = st.user
     if not user or not user.is_logged_in:
         st.warning("Please login to access this page.")
         return
