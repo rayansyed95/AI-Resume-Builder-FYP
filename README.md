@@ -188,7 +188,4 @@ streamlit run app.py
 4. Push to branch (`git push origin feature/NewFeature`).
 5. Open a Pull Request.
 
-For questions or details, connect with **Rayan Syed**:
-*   [GitHub](https://github.com/rayansyed95)
-*   [LinkedIn](https://www.linkedin.com/in/rayan-syed-866596253/)
 
