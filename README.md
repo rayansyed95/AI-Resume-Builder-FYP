@@ -179,30 +179,6 @@ streamlit run app.py
 
 ---
 
-## 🌐 Deployed Configuration (Streamlit Cloud)
-
-When deploying to [Streamlit Community Cloud](https://share.streamlit.io/), configure your environment secrets directly within the Streamlit deployment settings:
-
-1. In the Streamlit settings dashboard, go to the **Secrets** section.
-2. Copy and paste all parameters from both your `.env` and `.streamlit/secrets.toml` files:
-   ```toml
-   SUPABASE_URL = "https://your-project-id.supabase.co"
-   SUPABASE_KEY = "your-supabase-service-role-key"
-   OPENAI_API_KEY = "your-openai-api-key"
-
-   [auth]
-   redirect_uri = "https://your-deployed-app-name.streamlit.app/oauth2callback"
-   cookie_secret = "your_random_cookie_secret_string"
-
-   [auth.google]
-   client_id = "your_google_client_id.apps.googleusercontent.com"
-   client_secret = "your_google_client_secret"
-   server_metadata_url = "https://accounts.google.com/.well-known/openid-configuration"
-   ```
-3. Update the **Authorized redirect URIs** in your **Google Cloud Console** under Credentials to match:
-   `https://your-deployed-app-name.streamlit.app/oauth2callback`
-
----
 
 ## 🤝 Contributing & Support
 
@@ -215,3 +191,4 @@ When deploying to [Streamlit Community Cloud](https://share.streamlit.io/), conf
 For questions or details, connect with **Rayan Syed**:
 *   [GitHub](https://github.com/rayansyed95)
 *   [LinkedIn](https://www.linkedin.com/in/rayan-syed-866596253/)
+
