@@ -8,8 +8,9 @@ import io
 import uuid
 import requests
 
-# Initialize OpenAI client
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+# Initialize OpenAI client — reads from st.secrets (Streamlit Cloud) or .env (local)
+_openai_key = st.secrets.get("openai", {}).get("api_key") or os.getenv('OPENAI_API_KEY')
+client = OpenAI(api_key=_openai_key)
 
 def get_supabase_token(google_token: str) -> str:
     """Exchange Google token for Supabase token"""

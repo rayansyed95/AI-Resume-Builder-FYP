@@ -6,7 +6,8 @@ import os
 import json
 from PyPDF2 import PdfReader
 
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+_openai_key = st.secrets.get("openai", {}).get("api_key") or os.getenv('OPENAI_API_KEY')
+client = OpenAI(api_key=_openai_key)
 
 def extract_text_from_pdf(file):
     """Extract text from uploaded PDF file."""

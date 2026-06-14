@@ -13,7 +13,8 @@ from spire.doc.common import *
 # from modules.ai.ai_utils import generate_resume
 # from modules.utils.ui_utils import display_user_header
 
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+_openai_key = st.secrets.get("openai", {}).get("api_key") or os.getenv('OPENAI_API_KEY')
+client = OpenAI(api_key=_openai_key)
 
 
 def extract_markdown_resume(llm_output):
