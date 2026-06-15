@@ -1,5 +1,3 @@
-uygfivsyudbfcsuydvu
-
 # 📄 AI-Powered Resume Builder & ATS Optimizer
 
 An advanced, end-to-end web application built with **Streamlit**, **Supabase**, and **OpenAI GPT-4o** designed to help job seekers create tailormade, professionally optimized resumes that pass Applicant Tracking Systems (ATS) and impress recruiters.
